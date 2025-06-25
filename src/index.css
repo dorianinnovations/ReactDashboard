@@ -1,0 +1,348 @@
+@import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@400;500;600&family=Poppins:wght@300;400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #000000;
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background-color: #0c0c0c;
+  color: #dfdfdf;
+  font-family: "Rajdhani", sans-serif;
+  line-height: 1.5;
+  padding: 1rem;
+}
+
+button {
+  border-radius: 1.25rem;
+  border: 1px solid transparent;
+  padding: 0.9em 1.2em;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.35s;
+  font-family: inherit;
+  background-color: #242424;
+  cursor: pointer;
+  color: #dfdfdf;
+}
+
+button:hover {
+  border-color: #000000;
+  background-color: #333333;
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+  padding: 0.5rem 0;
+}
+
+.logo {
+  width: 10rem;
+  max-width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+/* Navigation styles */
+.Navbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.Navbar a {
+  position: relative;
+  padding: 0.75rem 1rem;
+  display: inline-block;
+  color: #dfdfdf;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+/* Hover Effects */
+.Navbar a::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transition: left 0.6s ease;
+  z-index: 2;
+}
+
+.Navbar a:hover::before {
+  left: 100%;
+}
+
+/* Glass overlay */
+.Navbar a::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.Navbar a:hover::after {
+  opacity: 1;
+}
+
+.Navbar a:hover {
+  color: #ffffff;
+  background: #3737377b;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.202),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.Navbar a.active {
+  color: #ffffff;
+  background: #242424;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Enhanced shimmer variations */
+.Navbar a.enhanced-shimmer::before {
+  background: linear-gradient(
+    45deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.6) 50%,
+    transparent 80%
+  );
+  width: 150%;
+  left: -150%;
+}
+
+.Navbar a.enhanced-shimmer:hover::before {
+  left: 100%;
+  transition: left 0.8s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  html {
+    font-size: 15px;
+    min-height: 100vh;
+  }
+
+  .logo {
+    width: 8rem;
+  }
+
+  .Navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .Navbar a {
+    text-align: left;
+    padding: 0.75rem;
+  }
+
+  button {
+    padding: 1rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 14px;
+  }
+
+  .logo {
+    width: 6.5rem;
+  }
+
+  body {
+    padding: 0.75rem;
+  }
+
+  .Navbar {
+    gap: 0.5rem;
+  }
+
+  .Navbar a {
+    font-size: 1rem;
+  }
+
+  button {
+    font-size: 0.95rem;
+  }
+}
+
+/* =========================================================
+   RESPONSIVE OVERRIDES — paste **after** your existing CSS
+   ========================================================= */
+@media (max-width: 1024px) {
+  /* tighten side padding a bit on small laptops/tablets */
+  .content-wrapper {
+    padding-left: 200px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  /* ───────────── Sidebar ➜ Top-bar ───────────── */
+  .sidebar {
+    width: 100% !important;
+    height: 50px !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 0 1rem !important;
+    border-bottom: 1px solid #888888 !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.601) !important;
+  }
+
+  .logo {
+    width: 1rem !important;
+  }
+
+  .nav-links {
+    flex-direction: row !important;
+    width: auto !important;
+    max-width: none !important;
+    gap: 0.5rem;
+    margin-bottom: 0 !important;
+  }
+
+  .nav-links a {
+    margin: 0 0.35rem !important;
+    padding: 0.75rem 0.75rem !important;
+  }
+
+  .content-wrapper {
+    margin-left: 0 !important;
+    padding: 4rem 1rem 1rem !important;
+  }
+
+  .minimal-chat-input,
+  .content-wrapper + div {
+    max-width: 100% !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    width: 6.5rem !important;
+  }
+  .nav-links a {
+    font-size: 0.9rem !important;
+  }
+  h1 {
+    font-size: 2rem !important;
+  }
+}
+/* ==== MINIMAL CHAT =================================================== */
+.mc-bubbles {
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 600px;
+  pointer-events: none;
+  z-index: 950;
+}
+
+.mc-bubble {
+  margin-bottom: 3px;
+  padding: 12px 16px;
+  font-size: 15px;
+  border-radius: 20px;
+  display: inline-block;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  animation: mc-fade 0.25s ease-out;
+}
+
+.mc-user {
+  background: rgba(28, 28, 28, 0.9);
+  color: #fff;
+  float: right;
+}
+.mc-bot {
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  float: left;
+}
+
+.mc-input {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 600px;
+  display: flex;
+  gap: 6px;
+  z-index: 950;
+}
+
+.mc-input input {
+  flex: 1;
+  padding: 12px 18px;
+  border-radius: 20px;
+  border: none;
+  background: rgba(28, 28, 28, 0.9);
+  color: #fff;
+  outline: none;
+}
+
+.mc-input button {
+  width: 60px;
+  border-radius: 20px;
+  border: none;
+  background: #3a3a3a;
+  color: #4a4a4a;
+  cursor: pointer;
+}
+
+@keyframes mc-fade {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

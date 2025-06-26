@@ -8,8 +8,10 @@ const ChatToggleButton = ({ isOpen, onClick }) => (
   <button
     className="mc-toggle-btn"
     onClick={onClick}
-    onMouseEnter={(e) => (e.currentTarget.classList.add("mc-toggle-btn-hover"))}
-    onMouseLeave={(e) => (e.currentTarget.classList.remove("mc-toggle-btn-hover"))}
+    onMouseEnter={(e) => e.currentTarget.classList.add("mc-toggle-btn-hover")}
+    onMouseLeave={(e) =>
+      e.currentTarget.classList.remove("mc-toggle-btn-hover")
+    }
   >
     {isOpen ? (
       <span className="mc-toggle-icon mc-toggle-close">✕</span>
@@ -55,7 +57,7 @@ const MinimalChat = () => {
       const apiUrl =
         window.location.hostname === "localhost"
           ? "http://localhost:8000/completion"
-          : "https://5118-2603-8000-e602-bfd4-7e4a-c836-7a6d-7b40.ngrok-free.app/completion";
+          : "https://cbeb-2603-8000-e602-bfd4-db8e-10b2-8c32-6440.ngrok-free.app/completion";
 
       const res = await fetch(apiUrl, {
         method: "POST",
@@ -64,7 +66,7 @@ const MinimalChat = () => {
           prompt: `<|im_start|>user\n${input}\n<|im_end|>\n<|im_start|>assistant\n`,
           stop: ["<|im_end|>"],
           n_predict: 128,
-          temperature: 0.7,
+          temperature: 0.9,
         }),
       });
 
@@ -77,7 +79,10 @@ const MinimalChat = () => {
 
       // Add placeholder message
       const botMessageId = Date.now() + 1;
-      setMessages((prev) => [...prev, { role: "bot", text: "", id: botMessageId }]);
+      setMessages((prev) => [
+        ...prev,
+        { role: "bot", text: "", id: botMessageId },
+      ]);
 
       const typeInterval = setInterval(() => {
         if (index < reply.length) {
@@ -87,7 +92,11 @@ const MinimalChat = () => {
           clearInterval(typeInterval);
           setMessages((prev) => {
             const updated = [...prev];
-            updated[updated.length - 1] = { role: "bot", text: reply, id: botMessageId };
+            updated[updated.length - 1] = {
+              role: "bot",
+              text: reply,
+              id: botMessageId,
+            };
             return updated;
           });
           setTypingText("");
@@ -126,14 +135,8 @@ const MinimalChat = () => {
             {m.text}
           </div>
         ))}
-        {typingText && (
-          <div className="mc-bubble mc-bot">
-            {typingText}
-          </div>
-        )}
-        {loading && !typingText && (
-          <div className="mc-bubble mc-bot">…</div>
-        )}
+        {typingText && <div className="mc-bubble mc-bot">{typingText}</div>}
+        {loading && !typingText && <div className="mc-bubble mc-bot">…</div>}
       </div>
 
       {/* Input */}
@@ -144,10 +147,7 @@ const MinimalChat = () => {
           onKeyDown={(e) => e.key === "Enter" && sendMessage()}
           placeholder="Ask me anything…"
         />
-        <button 
-          disabled={!input.trim() || loading} 
-          onClick={sendMessage}
-        >
+        <button disabled={!input.trim() || loading} onClick={sendMessage}>
           ↑
         </button>
       </div>
@@ -160,7 +160,7 @@ const MinimalChat = () => {
 ----------------------------------------------------------------*/
 export default function MinimalChatContainer() {
   const [open, setOpen] = useState(false);
-  
+
   return (
     <>
       <ChatToggleButton isOpen={open} onClick={() => setOpen(!open)} />
